@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Polars Little Thingie Box</title>
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+html, body {
+  cursor: url('cursor.png'), auto !important;
+}
+* {
+  cursor: inherit !important;
+}
+html {
+  background-image: url('background.png');
+}
+
+body {
+  margin: 0;
+  padding: 0; 
+  background-color: #ffffff; 
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.topnav a {
+  color: #d5e3ed;
+  text-align: center;
+  padding: 1% 1%; 
+  font-size: 1px;
+  aspect-ratio: 1 / 1;
+  transition: color 0.3s ease;
+}
+
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 8px;
+}
+
+.topnav a i {
+  font-size: 120px;
+  margin: 0 2px; 
+}
+.topnav a img {
+  width: 40px;
+  height: 40px;
+}
+
+.topnav a:hover {
+  background-color: #34343b;
+  color: white;
+}
+
+footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.topnav a.active {
+  background-color: var(--nav-active) !important;
+  color: var(--text-secondary) !important;
+}
+
+#theme-toggle {
+  font-family: 'Noto Color Emoji', 'Segoe UI Emoji', 'Apple Color Emoji', Arial, Helvetica, sans-serif !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  border-radius: 24px !important;
+  box-shadow: 0 4px 16px rgba(252, 87, 94, 0.18), 0 1.5px 6px rgba(0,0,0,0.10) !important;
+  padding: 10px 22px !important;
+  font-weight: bold !important;
+  font-size: 1.1rem !important;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  cursor: pointer;
+}
+#theme-toggle #theme-label {
+  font-weight: bold;
+}
+.theme-toggle-light #theme-label {
+  text-shadow: 0 0 2px #fff, 0 0 4px #00eaff, 0 0 2px #fff, 0 0 4px #00eaff;
+}
+.theme-toggle-dark #theme-label {
+  text-shadow: 0 0 2px #000, 0 0 4px #005bea, 0 0 2px #000, 0 0 4px #005bea;
+}
+
+#theme-toggle:hover {
+  color: #fff !important;
+  box-shadow: 0 6px 24px rgba(252, 87, 94, 0.28), 0 2px 8px rgba(0,0,0,0.14) !important;
+}
+.theme-toggle-light {
+  background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%) !important;
+}
+.theme-toggle-dark {
+  background: linear-gradient(135deg, #f7b42c 0%, #fc575e 100%) !important;
+}
+.theme-toggle-light:hover {
+  background: linear-gradient(135deg, #005bea 0%, #00c6fb 100%) !important;
+}
+.theme-toggle-dark:hover {
+  background: linear-gradient(135deg, #fc575e 0%, #f7b42c 100%) !important;
+}
+
+</style>
+</head>
+<body style="background-image: linear-gradient(to bottom, #0e0e10, #2f2f2f); margin: 1% 10% 1% 10%; padding: 0 5% 5% 5%; border-radius: 32px; position: relative;" class="container">
+
+  <div class="topnav" style="position: relative; flex-wrap: wrap; row-gap: 8px;">
+    <span style="color: #d5e3ed; font-size: 1.5rem; font-family: 'Arial Black', Arial, sans-serif; letter-spacing: 1px; position: relative; left: 0; top: 0; transform: none; white-space: nowrap; margin-right: 16px; margin-bottom: 4px;">Polar's Gooberland</span>
+    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; gap: 4px;">
+      <a class="active" href="main.html"><img id="icon-home" src="home.png"></a>
+      <a href="https://github.com/Polarite" data-size="large"><img id="icon-github" src="github.png"></a>
+      <a href="https://modrinth.com/user/Polarite" data-size="large"><img id="icon-modrinth" src="modrinth.png"></a>
+      <a href="https://discord.gg/evZmu3ZNru" data-size="large"><img id="icon-discord" src="discord.png"></a>
+    </div>
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <button id="theme-toggle" style="position: fixed; bottom: 15px; right: 10px; z-index: 1000; color: #fff; border: none; border-radius: 20px; padding: 8px 18px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: background 0.3s, color 0.3s; display: flex; align-items: center; gap: 8px;">
+    <img id="theme-icon" src="moon.png" alt="Theme Icon" style="width: 24px; height: 24px; vertical-align: middle;">
+    <span id="theme-label">Dark Mode</span>
+  </button>
+  <h1 style="color:#d5e3ed;">The awful website I made for no reason other than fucking around</h1>
+  <p style="display: flex; justify-content: center; color: #d5e3ed;">Am I allowed to swear here? Yes? No one cares? ok cool!</p>
+  <p style="color:#d5e3ed">To be honest this is a placeholder website, I really dont know what to put here but people kept visiting so I decided to put this here to make them stop. Thanks for visiting.</p>
+  <h3 style="color:#d5e3ed;">Add polarite from discord to talk!</h3>
+  <h2 style="color:#d5e3ed;">Here is pictures of my minecraft world :3</h2>
+
+  <!-- Carousel Start -->
+  <div id="carousel-container" style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
+    <div id="carousel-image-wrapper" style="position: relative; width: 70vw; max-width: 70vw; aspect-ratio: 16/9;">
+      <img id="carousel-image" src="default1.png" alt="Minecraft World" style="width: 100%; aspect-ratio: 16/9; height: auto; object-fit: cover; border-radius: 10px; border: 2px solid #34343b; background: #222;">
+      <div id="carousel-overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; background:rgba(40,40,40,0.5); border-radius:10px; z-index:20;"></div>
+      <button id="carousel-left" style="position: absolute; left: 4px; top: 50%; transform: translateY(-50%); background: var(--carousel-indicator-bg); color: var(--carousel-indicator-color); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 30; opacity: 0.8;">
+        <img src="left.png" alt="Left" style="width: 24px; height: 24px; pointer-events: none; filter: var(--carousel-arrow-filter);">
+      </button>
+      <button id="carousel-right" style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); background: var(--carousel-indicator-bg); color: var(--carousel-indicator-color); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 30; opacity: 0.8;">
+        <img src="right.png" alt="Right" style="width: 24px; height: 24px; pointer-events: none; filter: var(--carousel-arrow-filter);">
+      </button>
+      <div id="carousel-indicators" style="position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); margin-top: 0; z-index: 40;">
+        <span style="
+          font-size: 18px;
+          color: var(--carousel-indicator-color);
+          background: var(--carousel-indicator-bg);
+          border-radius: 999px;
+          padding: 4px 18px;
+          display: inline-block;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+          min-width: 60px;
+          text-align: center;
+        ">1 / 3</span>
+      </div>
+    </div>
+  </div>
+  <!-- Carousel End -->
+
+  <p style="color:#d5e3ed;">Hey M, if you are who I think you are, checking up on me, Im doing fine. I hope you're doing fine too.</p>
+
+
+
+<script>
+  // Carousel with loading overlay
+  const carouselImages = ['default1.webp', 'default2.webp', 'default3.webp'];
+  let carouselIndex = 0;
+  const carouselImg = document.getElementById('carousel-image');
+  const leftBtn = document.getElementById('carousel-left');
+  const rightBtn = document.getElementById('carousel-right');
+  const indicator = document.getElementById('carousel-indicators').querySelector('span');
+  const overlay = document.getElementById('carousel-overlay');
+
+  function setOverlay(show) {
+    overlay.style.display = show ? 'block' : 'none';
+  }
+
+  function updateCarousel() {
+    setOverlay(true);
+    const img = new window.Image();
+    img.onload = function() {
+      carouselImg.src = carouselImages[carouselIndex];
+      indicator.textContent = `${carouselIndex + 1} / ${carouselImages.length}`;
+      setOverlay(false);
+    };
+    img.onerror = function() {
+      setOverlay(false);
+    };
+    img.src = carouselImages[carouselIndex];
+  }
+
+  leftBtn.onclick = function() {
+    carouselIndex = (carouselIndex - 1 + carouselImages.length) % carouselImages.length;
+    updateCarousel();
+  };
+  rightBtn.onclick = function() {
+    carouselIndex = (carouselIndex + 1) % carouselImages.length;
+    updateCarousel();
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') leftBtn.click();
+    if (e.key === 'ArrowRight') rightBtn.click();
+  });
+  // Initial load
+  updateCarousel();
+
+  // Theme toggle logic
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const themeLabel = document.getElementById('theme-label');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const THEME_KEY = 'theme-mode';
+
+  // Icon elements for theme switching
+  const iconMap = [
+    { id: 'icon-home', light: 'home-dark.png', dark: 'home.png' },
+    { id: 'icon-github', light: 'github-dark.png', dark: 'github.png' },
+    { id: 'icon-modrinth', light: 'modrinth-dark.png', dark: 'modrinth.png' },
+    { id: 'icon-discord', light: 'discord-dark.png', dark: 'discord.png' }
+  ];
+
+function setIcons(mode) {
+  iconMap.forEach(icon => {
+    const el = document.getElementById(icon.id);
+    if (el) el.src = mode === 'light' ? icon.light : icon.dark;
+  });
+}
+
+  function setTheme(mode) {
+    if (mode === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIcon.src = 'sun.png';
+      themeIcon.alt = 'Light Mode';
+      themeLabel.textContent = 'Light Mode';
+      themeToggle.classList.add('theme-toggle-dark');
+      themeToggle.classList.remove('theme-toggle-light');
+      themeToggle.style.color = '#fff';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      themeIcon.src = 'moon.png';
+      themeIcon.alt = 'Dark Mode';
+      themeLabel.textContent = 'Dark Mode';
+      themeToggle.classList.add('theme-toggle-light');
+      themeToggle.classList.remove('theme-toggle-dark');
+      themeToggle.style.color = '#fff';
+    }
+    setIcons(mode);
+    localStorage.setItem(THEME_KEY, mode);
+  }
+
+  function getSavedTheme() {
+    return localStorage.getItem(THEME_KEY);
+  }
+
+  // Initial theme
+  const savedTheme = getSavedTheme();
+  if (savedTheme) {
+    setTheme(savedTheme);
+  } else {
+    setTheme(prefersDark ? 'dark' : 'light');
+  }
+
+  themeToggle.addEventListener('click', function() {
+    const current = document.documentElement.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+</script>
+
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+
+<script>
+  kofiWidgetOverlay.draw('tsundereunity', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Support Me',
+    'floating-chat.donateButton.background-color': '#323842',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+
+<!-- Rainbow Cursor Trail Start -->
+<script>
+// Rainbow sparkle trail that follows the cursor
+(function() {
+  const TRAIL_SIZE = 18;
+  const TRAIL_LIFETIME = 700; // ms
+  const COLORS = [
+    '#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'
+  ];
+  let colorIndex = 0;
+  let lastTime = 0;
+  let isTouch = false;
+
+  function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'rainbow-cursor-sparkle';
+    const scale = 0.7 + Math.random() * 0.8;
+    const rotate = Math.floor(Math.random() * 360);
+    const fall = 60 + Math.random() * 18; // px to fall
+    sparkle.style.left = (x - TRAIL_SIZE/2) + 'px';
+    sparkle.style.top = (y - TRAIL_SIZE/2) + 'px';
+    sparkle.style.setProperty('--sparkle-fall', fall + 'px');
+    sparkle.style.setProperty('--sparkle-color', COLORS[colorIndex]);
+    sparkle.style.transform = `scale(${scale}) rotate(${rotate}deg)`;
+    colorIndex = (colorIndex + 1) % COLORS.length;
+    document.body.appendChild(sparkle);
+    // Animate falling
+    setTimeout(() => {
+      sparkle.style.transform = `translateY(${fall}px) scale(1.2) rotate(0deg)`;
+    }, 10);
+    setTimeout(() => {
+      sparkle.style.opacity = '0';
+      setTimeout(() => sparkle.remove(), 350);
+    }, TRAIL_LIFETIME - 300);
+  }
+
+  function onMove(e) {
+    if (isTouch) return;
+    const now = Date.now();
+    if (now - lastTime < 12) return; // limit sparkle frequency
+    lastTime = now;
+    createSparkle(e.clientX, e.clientY);
+  }
+
+  function onTouch(e) {
+    isTouch = true;
+    for (const t of e.touches) {
+      createSparkle(t.clientX, t.clientY);
+    }
+  }
+
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onTouch);
+})();
+</script>
+<style>
+  .rainbow-cursor-sparkle {
+    position: fixed;
+    pointer-events: none;
+    width: 18px;
+    height: 18px;
+    z-index: 9999;
+    opacity: 0.5;
+    transition: opacity 0.3s linear, transform 0.7s cubic-bezier(.4,1.2,.6,1);
+    will-change: opacity, transform;
+    background: radial-gradient(circle at 50% 50%, var(--sparkle-color) 60%, #fff0 100%);
+    filter: drop-shadow(0 0 6px var(--sparkle-color)) drop-shadow(0 0 2px #fff8);
+    clip-path: polygon(
+      50% 0%, 61% 35%, 98% 35%,
+      68% 57%, 79% 91%, 50% 70%,
+      21% 91%, 32% 57%, 2% 35%,
+      39% 35%
+    );
+  }
+</style>
+<!-- Rainbow Cursor Trail End -->
+
+</script>
+
+<style>
+iframe, iframe * {
+  cursor: url('cursor.png'), auto !important;
+}
+
+/* Theme styles */
+/* Gradient box backgrounds for container */
+[data-theme="dark"] {
+  --bg-main: #16161a;
+  --bg-body: #222;
+  --bg-container: linear-gradient(to bottom, #0e0e10 0%, #353535 100%);
+  --text-main: #d5e3ed;
+  --text-secondary: #fff;
+  --nav-bg: #29292e;
+  --nav-hover: #44444b; /* lighter hover for dark mode */
+  --nav-active: #2f2f36; /* lighter active for dark mode */
+  --carousel-indicator-bg: rgba(20, 20, 30, 0.7);
+  --carousel-indicator-color: #d5e3ed;
+  --footer-bg: rgba(0, 0, 0, 0.5);
+  --carousel-arrow-filter: none;
+  --modpack-tag-bg: #23243a;
+  --modpack-tag-color: #b3c6ff;
+  --modpack-icon-filter: none;
+}
+[data-theme="light"] {
+  --bg-main: #f5f5f5;
+  --bg-body: #fff;
+  --bg-container: linear-gradient(to bottom, #e3e3ff 0%, #b3c6ff 100%);
+  --text-main: #222;
+  --text-secondary: #29292e;
+  --nav-bg: #e3e3ff;
+  --nav-hover: #bfc9d6; /* darker hover for light mode */
+  --nav-active: #9ba7b6; /* darker active for light mode */
+  --carousel-indicator-bg: rgba(220, 230, 255, 0.85);
+  --carousel-indicator-color: #29292e;
+  --footer-bg: rgba(240, 240, 255, 0.7);
+  --carousel-arrow-filter: invert(1) brightness(0.7);
+  --modpack-tag-bg: #e3e3ff;
+  --modpack-tag-color: #3b6cb7;
+  --modpack-icon-filter: invert(1) brightness(0.7);
+}
+html {
+  background-color: var(--bg-main) !important;
+}
+body {
+  background-color: var(--bg-body) !important;
+  color: var(--text-main) !important;
+}
+.container {
+  background: var(--bg-container) !important;
+}
+.topnav a {
+  color: var(--text-main) !important;
+}
+.topnav a:hover {
+  background-color: var(--nav-hover) !important;
+  color: var(--text-secondary) !important;
+  border-radius: 999px !important;
+}
+.topnav a.active {
+  background-color: var(--nav-active) !important;
+  color: var(--text-secondary) !important;
+  border-radius: 999px !important;
+}
+ h1, h2, h3, p, span, footer {
+  color: var(--text-main) !important;
+}
+</style>
+<script src="switch.js"></script>
+</body>
+
+
+<script>
+// Server-side comment section using PHP endpoints
+window.addEventListener('DOMContentLoaded', function() {
+  const commentForm = document.getElementById('comment-form');
+  const commentName = document.getElementById('comment-name');
+  const commentText = document.getElementById('comment-text');
+  const commentsList = document.getElementById('comments-list');
+
+  function escapeHTML(str) {
+    return str.replace(/[&<>"]|'/g, function(tag) {
+      const chars = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'};
+      return chars[tag] || tag;
+    });
+  }
+
+  // Pagination variables
+  let allComments = [];
+  let currentPage = 1;
+  const COMMENTS_PER_PAGE = 5;
+  let totalPages = 1;
+
+  function renderCommentsPage(page) {
+    // Clear and set up a flex column wrapper for comments and controls
+    commentsList.innerHTML = '';
+    commentsList.style.display = 'flex';
+    commentsList.style.flexDirection = 'column';
+    commentsList.style.justifyContent = 'flex-start';
+    commentsList.style.alignItems = 'stretch';
+
+    let hasComments = Array.isArray(allComments) && allComments.length > 0;
+    totalPages = Math.ceil(allComments.length / COMMENTS_PER_PAGE);
+
+    // Comments wrapper
+    const commentsWrapper = document.createElement('div');
+    commentsWrapper.style.display = 'flex';
+    commentsWrapper.style.flexDirection = 'column';
+    commentsWrapper.style.gap = '0px';
+    commentsWrapper.style.flex = '1 1 auto';
+
+    if (hasComments) {
+      if (page < 1) page = 1;
+      if (page > totalPages) page = totalPages;
+      currentPage = page;
+      // Show newest first
+      const start = allComments.length - (page * COMMENTS_PER_PAGE);
+      const end = start + COMMENTS_PER_PAGE;
+      const pageComments = allComments.slice(Math.max(0, start), Math.max(0, end)).reverse();
+      pageComments.forEach(c => {
+        const div = document.createElement('div');
+        div.style = 'background:rgba(0,0,0,0.04);border-radius:8px;padding:8px 12px;margin-bottom:8px;word-break:break-word;text-align:left;';
+        // Prefer clientTime if present, else fallback to server time
+        let rawTime = c.clientTime || c.time;
+        let displayTime = '';
+        let agoText = '';
+        if (rawTime) {
+          let d;
+          // If ISO 8601 with Z (UTC), force parse as UTC
+          if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(rawTime)) {
+            d = new Date(rawTime);
+          } else if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(rawTime)) {
+            // Legacy server time, treat as UTC
+            const parts = rawTime.split(/[- :]/);
+            d = new Date(Date.UTC(parts[0], parts[1]-1, parts[2], parts[3], parts[4], parts[5]));
+          } else {
+            d = new Date(rawTime);
+          }
+          if (!isNaN(d.getTime())) {
+            displayTime = d.toLocaleString();
+            // Calculate 'x time ago'
+            const now = new Date();
+            let diff = Math.floor((now - d) / 1000); // seconds
+            if (diff < 60) {
+              agoText = diff + ' seconds ago';
+            } else if (diff < 3600) {
+              agoText = Math.floor(diff/60) + ' minutes ago';
+            } else if (diff < 86400) {
+              agoText = Math.floor(diff/3600) + ' hours ago';
+            } else if (diff < 604800) {
+              agoText = Math.floor(diff/86400) + ' days ago';
+            } else if (diff < 2592000) {
+              agoText = Math.floor(diff/604800) + ' weeks ago';
+            } else if (diff < 31536000) {
+              agoText = Math.floor(diff/2592000) + ' months ago';
+            } else {
+              agoText = Math.floor(diff/31536000) + ' years ago';
+            }
+          } else {
+            displayTime = rawTime;
+          }
+        }
+        div.innerHTML = `<span style='color:var(--text-main);font-size:1rem;'><strong>${escapeHTML(c.name||'Anonymous')}</strong>: ${escapeHTML(c.text)}</span><br><div style='display:flex;justify-content:space-between;align-items:center;'><span style='font-size:0.8em;color:#888;margin-top:2px;display:block;'>${escapeHTML(displayTime||'')}</span><span style='font-size:0.8em;color:#888;margin-top:2px;display:block;text-align:right;'>${escapeHTML(agoText)}</span></div>`;
+        commentsWrapper.appendChild(div);
+      });
+    } else {
+      commentsWrapper.innerHTML = '<p style="color:var(--text-main);opacity:0.7;">No comments yet. Be the first!</p>';
+    }
+    commentsList.appendChild(commentsWrapper);
+
+    // Pagination controls always at the bottom, outside the comments wrapper
+    if (totalPages > 1) {
+      const nav = document.createElement('div');
+      nav.style = 'display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;';
+      const prevBtn = document.createElement('button');
+      prevBtn.textContent = 'Prev';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.style = 'padding:4px 12px;border-radius:6px;border:none;background:var(--nav-active);color:var(--text-secondary);cursor:pointer;opacity:' + (prevBtn.disabled ? '0.5' : '1') + ';';
+      prevBtn.onclick = () => { renderCommentsPage(currentPage - 1); };
+      const nextBtn = document.createElement('button');
+      nextBtn.textContent = 'Next';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.style = 'padding:4px 12px;border-radius:6px;border:none;background:var(--nav-active);color:var(--text-secondary);cursor:pointer;opacity:' + (nextBtn.disabled ? '0.5' : '1') + ';';
+      nextBtn.onclick = () => { renderCommentsPage(currentPage + 1); };
+      const pageInfo = document.createElement('span');
+      pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+      pageInfo.style = 'color:var(--text-main);font-size:0.95em;margin:0 8px;';
+      nav.appendChild(prevBtn);
+      nav.appendChild(pageInfo);
+      nav.appendChild(nextBtn);
+      commentsList.appendChild(nav);
+    }
+  }
+
+  async function loadComments() {
+    commentsList.innerHTML = '<p style="color:var(--text-main);opacity:0.7;">Loading comments...</p>';
+    try {
+      const res = await fetch('get_comments.php');
+      const comments = await res.json();
+      allComments = Array.isArray(comments) ? comments.slice(-100) : [];
+      renderCommentsPage(1);
+    } catch (e) {
+      commentsList.innerHTML = '<p style="color:red;">Failed to load comments.</p>';
+    }
+  }
+
+  commentForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = commentName.value.trim().slice(0,32);
+    const text = commentText.value.trim().slice(0,300);
+    if (!text) return;
+    try {
+      // Get client time in readable format
+      const clientTime = new Date().toLocaleString();
+      const res = await fetch('save_comment.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, text, clientTime })
+      });
+      const result = await res.json();
+      if (result.success) {
+        commentText.value = '';
+        loadComments();
+      } else {
+        alert('Failed to save comment: ' + (result.error || 'Unknown error'));
+      }
+    } catch (err) {
+      alert('Failed to save comment.');
+    }
+  });
+
+  loadComments();
+});
+</script>
+<!-- Comments and Modpack Card Side-by-Side Start -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 32px; margin: 32px auto 36px auto; max-width: 1400px;">
+  <div style="flex: 1 1 340px; min-width: 320px; max-width: 600px;">
+    <!-- Comment Section Start -->
+    <div id="comment-section" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 24px 18px 18px 18px;">
+      <h2 style="color: var(--text-main); margin-bottom: 12px;">Comments</h2>
+      <form id="comment-form" style="display: flex; flex-direction: column; gap: 8px;">
+        <input id="comment-name" type="text" maxlength="32" placeholder="Your name (optional)" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; color: var(--text-main); background: var(--bg-body);">
+        <textarea id="comment-text" rows="3" maxlength="300" placeholder="Write a comment..." required style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; color: var(--text-main); background: var(--bg-body);"></textarea>
+        <button type="submit" style="align-self: flex-end; background: var(--nav-active); color: var(--text-secondary); border: none; border-radius: 8px; padding: 8px 18px; font-size: 1rem; cursor: pointer; margin-top: 4px;">Post</button>
+      </form>
+      <div id="comments-list" style="margin-top: 18px; max-height: 800px; min-height: 600px; overflow-y: auto;"></div>
+    </div>
+    <!-- Comment Section End -->
+  </div>
+  <div style="flex: 0 1 420px; min-width: 320px; max-width: 420px; display: flex; flex-direction: column; gap: 32px;">
+    <!-- Modpack Card 1 Start -->
+    <div id="modpack-card" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.13); padding: 0; overflow: hidden; position: relative; font-family: inherit; cursor: pointer; margin-bottom: 0;" onclick="window.open('https://modrinth.com/modpack/tsundere-nostalgia-blast', '_blank')">
+      <div id="modpack-banner-container" style="background: #b3c6ff; height: 110px; position: relative;">
+        <img id="modpack-banner" src="default1.png" alt="Tsundere Unity Banner" style="width: 100%; height: 110px; object-fit: cover;">
+        <div style="position: absolute; left: 18px; top: 70px; background: #2e3a5e; border-radius: 16px; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.18); border: 4px solid #fff;">
+          <img id="modpack-icon" src="icon.ico" alt="Modpack Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+        </div>
+        <div id="modpack-title-banner" style="position: absolute; left: 90px; top: 125px; min-width: 80px; color: var(--text-main); font-size: 1.1rem; font-weight: bold; border-radius: 10px; padding: 4px 14px 4px 14px; white-space: nowrap; transform: translateY(-50%); z-index: 2;"></div>
+      </div>
+      <div style="padding: 32px 18px 18px 18px;">
+        <div id="modpack-description" style="font-size: 1rem; color: var(--text-main); margin-bottom: 12px;"></div>
+        <div id="modpack-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+          <div style="display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 1.05em;">
+            <span style="display: flex; align-items: center; gap: 4px;">
+              <img id="modpack-downloads-icon" src="download.png" alt="Downloads" style="width: 20px; height: 20px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <span id="modpack-downloads"></span>
+            </span>
+            <span style="display: flex; align-items: center; gap: 4px;">
+              <img id="modpack-favorites-icon" src="heart.png" alt="Favorites" style="width: 18px; height: 18px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <span id="modpack-followers" style="font-size: 0.9em; color: #bfc9d6; margin-left: 0;"></span>
+            </span>
+          </div>
+          <div id="modpack-updated" style="font-size: 0.95em; color: #bfc9d6;"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Modpack Card 1 End -->
+  </div>
+  <div style="flex: 0 1 420px; min-width: 320px; max-width: 420px; display: flex; flex-direction: column; gap: 32px;">
+    <!-- Modpack Card 2 Start -->
+    <div id="modpack-card-2" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.13); padding: 0; overflow: hidden; position: relative; font-family: inherit; cursor: pointer; margin-top: 0;" onclick="window.open('https://modrinth.com/modpack/smpmfpivss', '_blank')">
+      <div id="modpack-banner-container-2" style="background: #b3c6ff; height: 110px; position: relative;">
+        <img id="modpack-banner-2" src="default2.png" alt="SMPMFPIVSS Banner" style="width: 100%; height: 110px; object-fit: cover;">
+        <div style="position: absolute; left: 18px; top: 70px; background: #2e3a5e; border-radius: 16px; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.18); border: 4px solid #fff;">
+          <img id="modpack-icon-2" src="icon.ico" alt="Modpack Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+        </div>
+        <div id="modpack-title-banner-2" style="position: absolute; left: 90px; top: 125px; min-width: 80px; color: var(--text-main); font-size: 1.1rem; font-weight: bold; border-radius: 10px; padding: 4px 14px 4px 14px; white-space: nowrap; transform: translateY(-50%); z-index: 2;"></div>
+      </div>
+      <div style="padding: 32px 18px 18px 18px;">
+        <div id="modpack-description-2" style="font-size: 1rem; color: var(--text-main); margin-bottom: 12px;"></div>
+        <div id="modpack-tags-2" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+          <div style="display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 1.05em;">
+            <span style="display: flex; align-items: center; gap: 4px;">
+              <img id="modpack-downloads-icon-2" src="download.png" alt="Downloads" style="width: 20px; height: 20px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <span id="modpack-downloads-2"></span>
+            </span>
+            <span style="display: flex; align-items: center; gap: 4px;">
+              <img id="modpack-favorites-icon-2" src="heart.png" alt="Favorites" style="width: 18px; height: 18px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <span id="modpack-followers-2" style="font-size: 0.9em; color: #bfc9d6; margin-left: 0;"></span>
+            </span>
+          </div>
+          <div id="modpack-updated-2" style="font-size: 0.95em; color: #bfc9d6;"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Modpack Card 2 End -->
+  </div>
+</div>
+<!-- Comments and Modpack Card Side-by-Side End -->
+<div style="height: 36px;"></div>
+<script>
+// Dynamically update modpack cards from Modrinth API
+function updateModpackCard(cardId, projectId) {
+  fetch('https://api.modrinth.com/v2/project/' + projectId)
+    .then(r => r.json())
+    .then(data => {
+      if (!data) return;
+      // Title (now in banner)
+      const titleBanner = document.getElementById(cardId === 'modpack' ? 'modpack-title-banner' : 'modpack-title-banner-2');
+      if (titleBanner) titleBanner.textContent = data.title || '';
+
+      // Description
+      const descEl = document.getElementById(cardId === 'modpack' ? 'modpack-description' : 'modpack-description-2');
+      if (descEl) descEl.textContent = data.description || '';
+
+      // Banner
+      const bannerEl = document.getElementById(cardId === 'modpack' ? 'modpack-banner' : 'modpack-banner-2');
+      if (bannerEl) {
+        if (data.gallery && data.gallery.length > 0 && data.gallery[0].url) {
+          bannerEl.src = data.gallery[0].url;
+        } else if (data.icon_url) {
+          bannerEl.src = data.icon_url;
+        }
+      }
+
+      // Icon
+      const iconEl = document.getElementById(cardId === 'modpack' ? 'modpack-icon' : 'modpack-icon-2');
+      if (iconEl && data.icon_url) {
+        iconEl.src = data.icon_url;
+      }
+
+      // Downloads
+      const downloadsEl = document.getElementById(cardId === 'modpack' ? 'modpack-downloads' : 'modpack-downloads-2');
+      if (downloadsEl) downloadsEl.textContent = data.downloads ? data.downloads.toLocaleString() : '0';
+
+      // Followers
+      const followersEl = document.getElementById(cardId === 'modpack' ? 'modpack-followers' : 'modpack-followers-2');
+      if (followersEl) followersEl.textContent = data.followers ? data.followers : '';
+
+      // Last updated
+      const updatedEl = document.getElementById(cardId === 'modpack' ? 'modpack-updated' : 'modpack-updated-2');
+      if (updatedEl && data.updated) {
+        const updatedDate = new Date(data.updated);
+        const now = new Date();
+        const diffMs = now - updatedDate;
+        const diffDays = Math.floor(diffMs / (1000*60*60*24));
+        let updatedText = '';
+        if (diffDays < 30) {
+          updatedText = `Updated ${diffDays} days ago`;
+        } else if (diffDays < 365) {
+          updatedText = `Updated ${Math.floor(diffDays/30)} months ago`;
+        } else {
+          updatedText = `Updated ${Math.floor(diffDays/365)} years ago`;
+        }
+        updatedEl.textContent = updatedText;
+        updatedEl.style.color = 'var(--modpack-tag-color)';
+      }
+
+      // Tags
+      const tags = [];
+      if (data.client_side && data.server_side) {
+        if (data.client_side !== 'unsupported' && data.server_side !== 'unsupported') {
+          tags.push('Client and server');
+        } else if (data.client_side !== 'unsupported') {
+          tags.push('Client');
+        } else if (data.server_side !== 'unsupported') {
+          tags.push('Server');
+        }
+      }
+      if (Array.isArray(data.categories)) {
+        tags.push(...data.categories.map(cat => cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())));
+      }
+      // Update tags
+      const tagsContainer = document.getElementById(cardId === 'modpack' ? 'modpack-tags' : 'modpack-tags-2');
+      if (tagsContainer) {
+        tagsContainer.innerHTML = '';
+        // Use CSS variables for theme-aware tag colors
+        tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.textContent = tag;
+          span.style.background = 'var(--modpack-tag-bg)';
+          span.style.color = 'var(--modpack-tag-color)';
+          span.style.borderRadius = '12px';
+          span.style.padding = '4px 12px';
+          span.style.fontSize = '0.95em';
+          span.style.marginBottom = '4px';
+          span.style.display = 'inline-flex';
+          span.style.alignItems = 'center';
+          tagsContainer.appendChild(span);
+        });
+      }
+      // Ensure modpack icons update to current theme after card loads
+      const currentTheme = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setIcons(currentTheme);
+    })
+    .catch(() => {});
+}
+// Card 1: tsundere-nostalgia-blast
+updateModpackCard('modpack', 'tsundere-nostalgia-blast');
+// Card 2: smpmfpivss (add delay before fetching)
+setTimeout(function() {
+  updateModpackCard('modpack-card-2', 'smpmfpivss');
+}, 800);
+</script>
+<!-- Visitor Counter Start -->
+<div id="visitor-counter" style="margin: 0 auto 18px auto; text-align: center; font-size: 1.1rem; color: var(--text-main); background: var(--footer-bg); border-radius: 18px; padding: 10px 18px; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+  <span id="visitor-total">Total visitors: ...</span><br>
+  <span id="visitor-today">Today's visitors: ...</span>
+</div>
+
+<!-- Visitor Counter End -->
+
+
+<footer style="display: inline-block; padding: 10px; width: fit-content; position: static; left: 50%; transform: translateX(0); text-align: center; color: #43434b; padding-bottom: 10px; background-color: var(--footer-bg); border-radius: 32px; margin: 3vh auto 0 auto;">
+  <span id="footer-text"></span>
+  <script>
+    const texts = [
+      '&copy; 2025 Polarite, I am left handed so theres no rights.',
+      '&copy; 2025 Polarite, All lefts are reserved.',
+      '&copy; 2025 Polarite, if you actually have a problem with this page, you need to find better stuff to do with your life.',
+      '&copy; 2025 Polarite, Reading signs are important.',
+      '&copy; 2025 Polarite, Wake up Dr. Freeman, and smell the smelly smells.',
+      '&copy; 2025 Polarite, BRREEEOWW :3',
+      '&copy; 2025 Polarite, dont be happy its over, be sad it happened.',
+      '&copy; 2025 Polarite, Meow meow mrrp!!!',
+      '&copy; 2025 Polarite, I am not a cop so no rights.',
+      '&copy; 2025 Polarite, in this room theres GYAS!.',
+      '&copy; 2025 Polarite, asked ai to give me similar jokes, it said "you have no rights".',
+      '&copy; 2025 Polarite, I dont have the rights to put a copyright here.'
+    ];
+    const randomTextIndex = Math.floor(Math.random() * texts.length);
+    document.getElementById('footer-text').innerHTML = texts[randomTextIndex];
+  </script>
+</footer>
+<footer style="display: inline-block; padding: 10px; width: fit-content; position: absolute; bottom: -16%; left: 50%; transform: translateX(-50%); text-align: center; color: #43434b; padding-bottom: 10px;">
+  
+</footer>
+<script src="./oneko.js" style="position: static; right: 0; top: 50px;"></script>
+</html>
+<script>
+// Visitor counter fetch
+window.addEventListener('DOMContentLoaded', function() {
+  fetch('visitor_stats.php')
+    .then(r => r.json())
+    .then(data => {
+      if (data && typeof data.total !== 'undefined' && typeof data.today !== 'undefined') {
+        document.getElementById('visitor-total').textContent = 'Total visitors: ' + data.total;
+        document.getElementById('visitor-today').textContent = "Today's visitors: " + data.today;
+      }
+    })
+    .catch(() => {
+      document.getElementById('visitor-total').textContent = 'Total visitors: N/A';
+      document.getElementById('visitor-today').textContent = "Today's visitors: N/A";
+    });
+});
+</script>
