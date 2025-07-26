@@ -1,6 +1,6 @@
 <?php
 // Visitor stats JSON API
-$counter_file = 'count.txt';
+$counter_file = '../data/count.txt';
 $date = date('Y-m-d');
 $counts = [
   'total' => 0,

@@ -1,20 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Polars Little Thingie Box</title>
-  <link rel="icon" type="image/x-icon" href="icon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/icon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 <style>
 html, body {
-  cursor: url('cursor.png'), auto !important;
+  cursor: url('assets/cursor.webp'), auto !important;
 }
 * {
   cursor: inherit !important;
 }
 html {
-  background-image: url('background.png');
+  background-image: url('assets/background.webp');
+}
+
+/* Modpack card hover effects */
+.modpack-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+}
+
+.modpack-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  cursor: pointer !important;
+}
+
+[data-theme="dark"] .modpack-card:hover {
+  box-shadow: 0 8px 32px rgba(126, 126, 139, 0.4), 0 4px 16px rgba(53, 53, 53, 0.3), 0 2px 8px rgba(0,0,0,0.15) !important;
+}
+
+[data-theme="light"] .modpack-card:hover {
+  box-shadow: 0 8px 32px rgba(227, 227, 255, 0.4), 0 4px 16px rgba(179, 198, 255, 0.3), 0 2px 8px rgba(0,0,0,0.12) !important;
 }
 
 body {
@@ -123,16 +143,16 @@ footer {
   <div class="topnav" style="position: relative; flex-wrap: wrap; row-gap: 8px;">
     <span style="color: #d5e3ed; font-size: 1.5rem; font-family: 'Arial Black', Arial, sans-serif; letter-spacing: 1px; position: relative; left: 0; top: 0; transform: none; white-space: nowrap; margin-right: 16px; margin-bottom: 4px;">Polar's Gooberland</span>
     <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; gap: 4px;">
-      <a class="active" href="main.html"><img id="icon-home" src="home.png"></a>
-      <a href="https://github.com/Polarite" data-size="large"><img id="icon-github" src="github.png"></a>
-      <a href="https://modrinth.com/user/Polarite" data-size="large"><img id="icon-modrinth" src="modrinth.png"></a>
-      <a href="https://discord.gg/evZmu3ZNru" data-size="large"><img id="icon-discord" src="discord.png"></a>
+      <a class="active" href="main.html"><img id="icon-home" src="assets/home.webp"></a>
+      <a href="https://github.com/Polarite" data-size="large"><img id="icon-github" src="assets/github.webp"></a>
+      <a href="https://modrinth.com/user/Polarite" data-size="large"><img id="icon-modrinth" src="assets/modrinth.webp"></a>
+      <a href="https://discord.gg/evZmu3ZNru" data-size="large"><img id="icon-discord" src="assets/discord.webp"></a>
     </div>
   </div>
 
   <!-- Theme Toggle Button -->
   <button id="theme-toggle" style="position: fixed; bottom: 15px; right: 10px; z-index: 1000; color: #fff; border: none; border-radius: 20px; padding: 8px 18px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: background 0.3s, color 0.3s; display: flex; align-items: center; gap: 8px;">
-    <img id="theme-icon" src="moon.png" alt="Theme Icon" style="width: 24px; height: 24px; vertical-align: middle;">
+    <img id="theme-icon" src="assets/moon.webp" alt="Theme Icon" style="width: 24px; height: 24px; vertical-align: middle;">
     <span id="theme-label">Dark Mode</span>
   </button>
   <h1 style="color:#d5e3ed;">The awful website I made for no reason other than fucking around</h1>
@@ -144,13 +164,13 @@ footer {
   <!-- Carousel Start -->
   <div id="carousel-container" style="display: flex; flex-direction: column; align-items: center; margin: 20px 0;">
     <div id="carousel-image-wrapper" style="position: relative; width: 70vw; max-width: 70vw; aspect-ratio: 16/9;">
-      <img id="carousel-image" src="default1.png" alt="Minecraft World" style="width: 100%; aspect-ratio: 16/9; height: auto; object-fit: cover; border-radius: 10px; border: 2px solid #34343b; background: #222;">
+      <img id="carousel-image" src="assets/default.webp" alt="Minecraft World" style="width: 100%; aspect-ratio: 16/9; height: auto; object-fit: cover; border-radius: 10px; border: 2px solid #34343b; background: #222;">
       <div id="carousel-overlay" style="display:none; position:absolute; left:0; top:0; width:100%; height:100%; background:rgba(40,40,40,0.5); border-radius:10px; z-index:20;"></div>
       <button id="carousel-left" style="position: absolute; left: 4px; top: 50%; transform: translateY(-50%); background: var(--carousel-indicator-bg); color: var(--carousel-indicator-color); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 30; opacity: 0.8;">
-        <img src="left.png" alt="Left" style="width: 24px; height: 24px; pointer-events: none; filter: var(--carousel-arrow-filter);">
+        <img src="assets/left.webp" alt="Left" style="width: 24px; height: 24px; pointer-events: none; filter: var(--carousel-arrow-filter);">
       </button>
       <button id="carousel-right" style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); background: var(--carousel-indicator-bg); color: var(--carousel-indicator-color); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 30; opacity: 0.8;">
-        <img src="right.png" alt="Right" style="width: 24px; height: 24px; pointer-events: none; filter: var(--carousel-arrow-filter);">
+        <img src="assets/right.webp" alt="Right" style="width: 24px; height: 24px; pointer-events: none; filter: var(--carousel-arrow-filter);">
       </button>
       <div id="carousel-indicators" style="position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); margin-top: 0; z-index: 40;">
         <span style="
@@ -175,7 +195,7 @@ footer {
 
 <script>
   // Carousel with loading overlay
-  const carouselImages = ['default1.webp', 'default2.webp', 'default3.webp'];
+  const carouselImages = ['assets/default1.webp', 'assets/default2.webp', 'assets/default3.webp'];
   let carouselIndex = 0;
   const carouselImg = document.getElementById('carousel-image');
   const leftBtn = document.getElementById('carousel-left');
@@ -225,10 +245,10 @@ footer {
 
   // Icon elements for theme switching
   const iconMap = [
-    { id: 'icon-home', light: 'home-dark.png', dark: 'home.png' },
-    { id: 'icon-github', light: 'github-dark.png', dark: 'github.png' },
-    { id: 'icon-modrinth', light: 'modrinth-dark.png', dark: 'modrinth.png' },
-    { id: 'icon-discord', light: 'discord-dark.png', dark: 'discord.png' }
+    { id: 'icon-home', light: 'assets/home-dark.webp', dark: 'assets/home.webp' },
+    { id: 'icon-github', light: 'assets/github-dark.webp', dark: 'assets/github.webp' },
+    { id: 'icon-modrinth', light: 'assets/modrinth-dark.webp', dark: 'assets/modrinth.webp' },
+    { id: 'icon-discord', light: 'assets/discord-dark.webp', dark: 'assets/discord.webp' }
   ];
 
 function setIcons(mode) {
@@ -241,7 +261,7 @@ function setIcons(mode) {
   function setTheme(mode) {
     if (mode === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
-      themeIcon.src = 'sun.png';
+      themeIcon.src = 'assets/sun.webp';
       themeIcon.alt = 'Light Mode';
       themeLabel.textContent = 'Light Mode';
       themeToggle.classList.add('theme-toggle-dark');
@@ -249,7 +269,7 @@ function setIcons(mode) {
       themeToggle.style.color = '#fff';
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
-      themeIcon.src = 'moon.png';
+      themeIcon.src = 'assets/moon.webp';
       themeIcon.alt = 'Dark Mode';
       themeLabel.textContent = 'Dark Mode';
       themeToggle.classList.add('theme-toggle-light');
@@ -366,11 +386,9 @@ function setIcons(mode) {
 </style>
 <!-- Rainbow Cursor Trail End -->
 
-</script>
-
 <style>
 iframe, iframe * {
-  cursor: url('cursor.png'), auto !important;
+  cursor: url('assets/cursor.webp'), auto !important;
 }
 
 /* Theme styles */
@@ -435,25 +453,27 @@ body {
  h1, h2, h3, p, span, footer {
   color: var(--text-main) !important;
 }
+
 </style>
-<script src="switch.js"></script>
+<script src="scripts/switch.js"></script>
 </body>
 
 
 <script>
+// Global escape HTML function
+function escapeHTML(str) {
+  return str.replace(/[&<>"]|'/g, function(tag) {
+    const chars = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'};
+    return chars[tag] || tag;
+  });
+}
+
 // Server-side comment section using PHP endpoints
 window.addEventListener('DOMContentLoaded', function() {
   const commentForm = document.getElementById('comment-form');
   const commentName = document.getElementById('comment-name');
   const commentText = document.getElementById('comment-text');
   const commentsList = document.getElementById('comments-list');
-
-  function escapeHTML(str) {
-    return str.replace(/[&<>"]|'/g, function(tag) {
-      const chars = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'};
-      return chars[tag] || tag;
-    });
-  }
 
   // Pagination variables
   let allComments = [];
@@ -565,7 +585,7 @@ window.addEventListener('DOMContentLoaded', function() {
   async function loadComments() {
     commentsList.innerHTML = '<p style="color:var(--text-main);opacity:0.7;">Loading comments...</p>';
     try {
-      const res = await fetch('get_comments.php');
+      const res = await fetch('php/get_comments.php?section=main');
       const comments = await res.json();
       allComments = Array.isArray(comments) ? comments.slice(-100) : [];
       renderCommentsPage(1);
@@ -582,10 +602,10 @@ window.addEventListener('DOMContentLoaded', function() {
     try {
       // Get client time in readable format
       const clientTime = new Date().toLocaleString();
-      const res = await fetch('save_comment.php', {
+      const res = await fetch('php/save_comment.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, text, clientTime })
+        body: JSON.stringify({ name, text, clientTime, section: 'main' })
       });
       const result = await res.json();
       if (result.success) {
@@ -600,6 +620,186 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
   loadComments();
+});
+
+// Modpack comment sections
+function createModpackCommentSystem(sectionId, formId, nameId, textId, listId, section) {
+  console.log('Creating modpack comment system for:', section);
+  const commentForm = document.getElementById(formId);
+  const commentName = document.getElementById(nameId);
+  const commentText = document.getElementById(textId);
+  const commentsList = document.getElementById(listId);
+
+  if (!commentForm || !commentName || !commentText || !commentsList) {
+    console.error('Missing elements for', section, ':', {commentForm, commentName, commentText, commentsList});
+    return;
+  }
+
+  let allComments = [];
+  let currentPage = 1;
+  const COMMENTS_PER_PAGE = 3; // Smaller limit for modpack comments
+  let totalPages = 1;
+
+  function renderCommentsPage(page) {
+    commentsList.innerHTML = '';
+    commentsList.style.display = 'flex';
+    commentsList.style.flexDirection = 'column';
+    commentsList.style.justifyContent = 'flex-start';
+    commentsList.style.alignItems = 'stretch';
+
+    let hasComments = Array.isArray(allComments) && allComments.length > 0;
+    totalPages = Math.ceil(allComments.length / COMMENTS_PER_PAGE);
+
+    const commentsWrapper = document.createElement('div');
+    commentsWrapper.style.display = 'flex';
+    commentsWrapper.style.flexDirection = 'column';
+    commentsWrapper.style.gap = '0px';
+    commentsWrapper.style.flex = '1 1 auto';
+
+    if (hasComments) {
+      if (page < 1) page = 1;
+      if (page > totalPages) page = totalPages;
+      currentPage = page;
+      const start = allComments.length - (page * COMMENTS_PER_PAGE);
+      const end = start + COMMENTS_PER_PAGE;
+      const pageComments = allComments.slice(Math.max(0, start), Math.max(0, end)).reverse();
+      pageComments.forEach(c => {
+        const div = document.createElement('div');
+        div.style = 'background:rgba(0,0,0,0.04);border-radius:8px;padding:8px 12px;margin-bottom:8px;word-break:break-word;text-align:left;';
+        let rawTime = c.clientTime || c.time;
+        let displayTime = '';
+        let agoText = '';
+        if (rawTime) {
+          let d;
+          if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(rawTime)) {
+            d = new Date(rawTime);
+          } else if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(rawTime)) {
+            const parts = rawTime.split(/[- :]/);
+            d = new Date(Date.UTC(parts[0], parts[1]-1, parts[2], parts[3], parts[4], parts[5]));
+          } else {
+            d = new Date(rawTime);
+          }
+          if (!isNaN(d.getTime())) {
+            displayTime = d.toLocaleString();
+            const now = new Date();
+            let diff = Math.floor((now - d) / 1000);
+            if (diff < 60) {
+              agoText = diff + ' seconds ago';
+            } else if (diff < 3600) {
+              agoText = Math.floor(diff/60) + ' minutes ago';
+            } else if (diff < 86400) {
+              agoText = Math.floor(diff/3600) + ' hours ago';
+            } else if (diff < 604800) {
+              agoText = Math.floor(diff/86400) + ' days ago';
+            } else if (diff < 2592000) {
+              agoText = Math.floor(diff/604800) + ' weeks ago';
+            } else if (diff < 31536000) {
+              agoText = Math.floor(diff/2592000) + ' months ago';
+            } else {
+              agoText = Math.floor(diff/31536000) + ' years ago';
+            }
+          } else {
+            displayTime = rawTime;
+          }
+        }
+        div.innerHTML = `<span style='color:var(--text-main);font-size:0.9rem;'><strong>${escapeHTML(c.name||'Anonymous')}</strong>: ${escapeHTML(c.text)}</span><br><div style='display:flex;justify-content:space-between;align-items:center;'><span style='font-size:0.7em;color:#888;margin-top:2px;display:block;'>${escapeHTML(displayTime||'')}</span><span style='font-size:0.7em;color:#888;margin-top:2px;display:block;text-align:right;'>${escapeHTML(agoText)}</span></div>`;
+        commentsWrapper.appendChild(div);
+      });
+    } else {
+      commentsWrapper.innerHTML = '<p style="color:var(--text-main);opacity:0.7;font-size:0.9rem;">No comments yet. Be the first!</p>';
+    }
+    commentsList.appendChild(commentsWrapper);
+
+    if (totalPages > 1) {
+      const nav = document.createElement('div');
+      nav.style = 'display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px;';
+      const prevBtn = document.createElement('button');
+      prevBtn.textContent = 'Prev';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.style = 'padding:2px 8px;border-radius:4px;border:none;background:var(--nav-active);color:var(--text-secondary);cursor:pointer;opacity:' + (prevBtn.disabled ? '0.5' : '1') + ';font-size:0.8rem;';
+      prevBtn.onclick = () => { renderCommentsPage(currentPage - 1); };
+      const nextBtn = document.createElement('button');
+      nextBtn.textContent = 'Next';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.style = 'padding:2px 8px;border-radius:4px;border:none;background:var(--nav-active);color:var(--text-secondary);cursor:pointer;opacity:' + (nextBtn.disabled ? '0.5' : '1') + ';font-size:0.8rem;';
+      nextBtn.onclick = () => { renderCommentsPage(currentPage + 1); };
+      const pageInfo = document.createElement('span');
+      pageInfo.textContent = `${currentPage}/${totalPages}`;
+      pageInfo.style = 'color:var(--text-main);font-size:0.8em;margin:0 6px;';
+      nav.appendChild(prevBtn);
+      nav.appendChild(pageInfo);
+      nav.appendChild(nextBtn);
+      commentsList.appendChild(nav);
+    }
+  }
+
+  async function loadComments() {
+    console.log('Loading comments for section:', section);
+    commentsList.innerHTML = '<p style="color:var(--text-main);opacity:0.7;font-size:0.9rem;">Loading comments...</p>';
+    try {
+      const url = 'php/get_comments.php?section=' + section;
+      console.log('Fetching from:', url);
+      const res = await fetch(url);
+      const comments = await res.json();
+      console.log('Loaded comments for', section, ':', comments);
+      allComments = Array.isArray(comments) ? comments.slice(-50) : [];
+      renderCommentsPage(1);
+    } catch (e) {
+      console.error('Error loading comments for', section, ':', e);
+      commentsList.innerHTML = '<p style="color:red;font-size:0.9rem;">Failed to load comments.</p>';
+    }
+  }
+
+  commentForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = commentName.value.trim().slice(0,32);
+    const text = commentText.value.trim().slice(0,300);
+    if (!text) return;
+    try {
+      const clientTime = new Date().toLocaleString();
+      const res = await fetch('php/save_comment.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, text, clientTime, section })
+      });
+      const result = await res.json();
+      if (result.success) {
+        commentText.value = '';
+        loadComments();
+      } else {
+        alert('Failed to save comment: ' + (result.error || 'Unknown error'));
+      }
+    } catch (err) {
+      alert('Failed to save comment.');
+    }
+  });
+
+  loadComments();
+}
+
+// Initialize modpack comment systems
+window.addEventListener('DOMContentLoaded', function() {
+  console.log('Initializing modpack comment systems...');
+  
+  createModpackCommentSystem(
+    'modpack1-comment-section', 
+    'modpack1-comment-form', 
+    'modpack1-comment-name', 
+    'modpack1-comment-text', 
+    'modpack1-comments-list', 
+    'modpack1'
+  );
+  
+  createModpackCommentSystem(
+    'modpack2-comment-section', 
+    'modpack2-comment-form', 
+    'modpack2-comment-name', 
+    'modpack2-comment-text', 
+    'modpack2-comments-list', 
+    'modpack2'
+  );
+  
+  console.log('Modpack comment systems initialized.');
 });
 </script>
 <!-- Comments and Modpack Card Side-by-Side Start -->
@@ -619,11 +819,11 @@ window.addEventListener('DOMContentLoaded', function() {
   </div>
   <div style="flex: 0 1 420px; min-width: 320px; max-width: 420px; display: flex; flex-direction: column; gap: 32px;">
     <!-- Modpack Card 1 Start -->
-    <div id="modpack-card" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.13); padding: 0; overflow: hidden; position: relative; font-family: inherit; cursor: pointer; margin-bottom: 0;" onclick="window.open('https://modrinth.com/modpack/tsundere-nostalgia-blast', '_blank')">
+    <div id="modpack-card" class="modpack-card" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.13); padding: 0; overflow: hidden; position: relative; font-family: inherit; cursor: pointer; margin-bottom: 0;" onclick="window.open('https://modrinth.com/modpack/tsundere-nostalgia-blast', '_blank')">
       <div id="modpack-banner-container" style="background: #b3c6ff; height: 110px; position: relative;">
-        <img id="modpack-banner" src="default1.png" alt="Tsundere Unity Banner" style="width: 100%; height: 110px; object-fit: cover;">
+        <img id="modpack-banner" src="assets/default.webp" alt="Tsundere Unity Banner" style="width: 100%; height: 110px; object-fit: cover;">
         <div style="position: absolute; left: 18px; top: 70px; background: #2e3a5e; border-radius: 16px; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.18); border: 4px solid #fff;">
-          <img id="modpack-icon" src="icon.ico" alt="Modpack Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+          <img id="modpack-icon" src="assets/icon.ico" alt="Modpack Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
         </div>
         <div id="modpack-title-banner" style="position: absolute; left: 90px; top: 125px; min-width: 80px; color: var(--text-main); font-size: 1.1rem; font-weight: bold; border-radius: 10px; padding: 4px 14px 4px 14px; white-space: nowrap; transform: translateY(-50%); z-index: 2;"></div>
       </div>
@@ -633,11 +833,11 @@ window.addEventListener('DOMContentLoaded', function() {
         <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
           <div style="display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 1.05em;">
             <span style="display: flex; align-items: center; gap: 4px;">
-              <img id="modpack-downloads-icon" src="download.png" alt="Downloads" style="width: 20px; height: 20px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <img id="modpack-downloads-icon" src="assets/download.webp" alt="Downloads" style="width: 20px; height: 20px; vertical-align: middle; filter: var(--modpack-icon-filter);">
               <span id="modpack-downloads"></span>
             </span>
             <span style="display: flex; align-items: center; gap: 4px;">
-              <img id="modpack-favorites-icon" src="heart.png" alt="Favorites" style="width: 18px; height: 18px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <img id="modpack-favorites-icon" src="assets/heart.webp" alt="Favorites" style="width: 18px; height: 18px; vertical-align: middle; filter: var(--modpack-icon-filter);">
               <span id="modpack-followers" style="font-size: 0.9em; color: #bfc9d6; margin-left: 0;"></span>
             </span>
           </div>
@@ -646,14 +846,26 @@ window.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
     <!-- Modpack Card 1 End -->
+    
+    <!-- Modpack 1 Comment Section Start -->
+    <div id="modpack1-comment-section" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 24px 18px 18px 18px; margin-top: 16px;">
+      <h3 style="color: var(--text-main); margin-bottom: 12px;">Comments for Tsundere Unity</h3>
+      <form id="modpack1-comment-form" style="display: flex; flex-direction: column; gap: 8px;">
+        <input id="modpack1-comment-name" type="text" maxlength="32" placeholder="Your name (optional)" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; color: var(--text-main); background: var(--bg-body);">
+        <textarea id="modpack1-comment-text" rows="3" maxlength="300" placeholder="Write a comment..." required style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; color: var(--text-main); background: var(--bg-body);"></textarea>
+        <button type="submit" style="align-self: flex-end; background: var(--nav-active); color: var(--text-secondary); border: none; border-radius: 8px; padding: 8px 18px; font-size: 1rem; cursor: pointer; margin-top: 4px;">Post</button>
+      </form>
+      <div id="modpack1-comments-list" style="margin-top: 18px; max-height: 400px; min-height: 200px; overflow-y: auto;"></div>
+    </div>
+    <!-- Modpack 1 Comment Section End -->
   </div>
   <div style="flex: 0 1 420px; min-width: 320px; max-width: 420px; display: flex; flex-direction: column; gap: 32px;">
     <!-- Modpack Card 2 Start -->
-    <div id="modpack-card-2" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.13); padding: 0; overflow: hidden; position: relative; font-family: inherit; cursor: pointer; margin-top: 0;" onclick="window.open('https://modrinth.com/modpack/smpmfpivss', '_blank')">
+    <div id="modpack-card-2" class="modpack-card" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.13); padding: 0; overflow: hidden; position: relative; font-family: inherit; cursor: pointer; margin-top: 0;" onclick="window.open('https://modrinth.com/modpack/smpmfpivss', '_blank')">
       <div id="modpack-banner-container-2" style="background: #b3c6ff; height: 110px; position: relative;">
-        <img id="modpack-banner-2" src="default2.png" alt="SMPMFPIVSS Banner" style="width: 100%; height: 110px; object-fit: cover;">
+        <img id="modpack-banner-2" src="assets/default.webp" alt="SMPMFPIVSS Banner" style="width: 100%; height: 110px; object-fit: cover;">
         <div style="position: absolute; left: 18px; top: 70px; background: #2e3a5e; border-radius: 16px; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.18); border: 4px solid #fff;">
-          <img id="modpack-icon-2" src="icon.ico" alt="Modpack Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+          <img id="modpack-icon-2" src="assets/icon.ico" alt="Modpack Icon" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
         </div>
         <div id="modpack-title-banner-2" style="position: absolute; left: 90px; top: 125px; min-width: 80px; color: var(--text-main); font-size: 1.1rem; font-weight: bold; border-radius: 10px; padding: 4px 14px 4px 14px; white-space: nowrap; transform: translateY(-50%); z-index: 2;"></div>
       </div>
@@ -663,11 +875,11 @@ window.addEventListener('DOMContentLoaded', function() {
         <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
           <div style="display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 1.05em;">
             <span style="display: flex; align-items: center; gap: 4px;">
-              <img id="modpack-downloads-icon-2" src="download.png" alt="Downloads" style="width: 20px; height: 20px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <img id="modpack-downloads-icon-2" src="assets/download.webp" alt="Downloads" style="width: 20px; height: 20px; vertical-align: middle; filter: var(--modpack-icon-filter);">
               <span id="modpack-downloads-2"></span>
             </span>
             <span style="display: flex; align-items: center; gap: 4px;">
-              <img id="modpack-favorites-icon-2" src="heart.png" alt="Favorites" style="width: 18px; height: 18px; vertical-align: middle; filter: var(--modpack-icon-filter);">
+              <img id="modpack-favorites-icon-2" src="assets/heart.webp" alt="Favorites" style="width: 18px; height: 18px; vertical-align: middle; filter: var(--modpack-icon-filter);">
               <span id="modpack-followers-2" style="font-size: 0.9em; color: #bfc9d6; margin-left: 0;"></span>
             </span>
           </div>
@@ -676,6 +888,18 @@ window.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
     <!-- Modpack Card 2 End -->
+    
+    <!-- Modpack 2 Comment Section Start -->
+    <div id="modpack2-comment-section" style="background: var(--bg-container); border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); padding: 24px 18px 18px 18px; margin-top: 16px;">
+      <h3 style="color: var(--text-main); margin-bottom: 12px;">Comments for SMPMFPIVSS</h3>
+      <form id="modpack2-comment-form" style="display: flex; flex-direction: column; gap: 8px;">
+        <input id="modpack2-comment-name" type="text" maxlength="32" placeholder="Your name (optional)" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; color: var(--text-main); background: var(--bg-body);">
+        <textarea id="modpack2-comment-text" rows="3" maxlength="300" placeholder="Write a comment..." required style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; color: var(--text-main); background: var(--bg-body);"></textarea>
+        <button type="submit" style="align-self: flex-end; background: var(--nav-active); color: var(--text-secondary); border: none; border-radius: 8px; padding: 8px 18px; font-size: 1rem; cursor: pointer; margin-top: 4px;">Post</button>
+      </form>
+      <div id="modpack2-comments-list" style="margin-top: 18px; max-height: 400px; min-height: 200px; overflow-y: auto;"></div>
+    </div>
+    <!-- Modpack 2 Comment Section End -->
   </div>
 </div>
 <!-- Comments and Modpack Card Side-by-Side End -->
@@ -780,9 +1004,8 @@ function updateModpackCard(cardId, projectId) {
 // Card 1: tsundere-nostalgia-blast
 updateModpackCard('modpack', 'tsundere-nostalgia-blast');
 // Card 2: smpmfpivss (add delay before fetching)
-setTimeout(function() {
-  updateModpackCard('modpack-card-2', 'smpmfpivss');
-}, 800);
+
+updateModpackCard('modpack-card-2', 'smpmfpivss');
 </script>
 <!-- Visitor Counter Start -->
 <div id="visitor-counter" style="margin: 0 auto 18px auto; text-align: center; font-size: 1.1rem; color: var(--text-main); background: var(--footer-bg); border-radius: 18px; padding: 10px 18px; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -817,12 +1040,12 @@ setTimeout(function() {
 <footer style="display: inline-block; padding: 10px; width: fit-content; position: absolute; bottom: -16%; left: 50%; transform: translateX(-50%); text-align: center; color: #43434b; padding-bottom: 10px;">
   
 </footer>
-<script src="./oneko.js" style="position: static; right: 0; top: 50px;"></script>
-</html>
+<script src="./scripts/oneko.js"></script>
+
 <script>
 // Visitor counter fetch
 window.addEventListener('DOMContentLoaded', function() {
-  fetch('visitor_stats.php')
+  fetch('php/visitor_stats.php')
     .then(r => r.json())
     .then(data => {
       if (data && typeof data.total !== 'undefined' && typeof data.today !== 'undefined') {
@@ -836,3 +1059,4 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+</html>

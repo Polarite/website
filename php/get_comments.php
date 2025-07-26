@@ -1,7 +1,16 @@
 <?php
 // get_comments.php: Returns all comments as JSON
 header('Content-Type: application/json');
-$commentsFile = __DIR__ . '/comments.json';
+
+// Get section parameter (default to 'main' for backward compatibility)
+$section = isset($_GET['section']) ? $_GET['section'] : 'main';
+$allowedSections = ['main', 'modpack1', 'modpack2'];
+if (!in_array($section, $allowedSections)) {
+    echo '[]';
+    exit;
+}
+
+$commentsFile = __DIR__ . '/../data/comments_' . $section . '.json';
 if (file_exists($commentsFile)) {
     $comments = file_get_contents($commentsFile);
     $json = json_decode($comments, true);

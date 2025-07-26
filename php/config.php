@@ -12,7 +12,7 @@ define('SHADOW_COLOUR_HEX', '#000000');
 define('FONT', 20);
 
 //Enter your desired font below, this should be a ttf file and exist in the same folder as this
-define('FONT_TYPE', 'BLUEHIGD.ttf');
+define('FONT_TYPE', '../assets/BLUEHIGD.ttf');
 
 //Enter the desired text below to append the count value (if you wish to have text there, leave blank otherwise). Please note the space at the start of the text. 
 define('IMAGE_TEXT', 'visitors');

@@ -34,10 +34,10 @@ $shadow_rgb = hex2rgb(SHADOW_COLOUR_HEX);
 /* -------------------------------------------------------------------------- */
 //                           HIT COUNTER CODE
 
-$counter = file_get_contents("count.txt");
+$counter = file_get_contents("../data/count.txt");
 $counter = trim($counter);
 $counter += 1;
-file_put_contents("count.txt", $counter);
+file_put_contents("../data/count.txt", $counter);
 
 /* -------------------------------------------------------------------------- */
 //                       IMAGE GENERACTOR CODE
